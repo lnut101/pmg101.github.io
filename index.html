@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body { margin: 0px; padding: 0px; }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="lib/kineticJS.js"></script>
+    <script src="js/framework/Observable.js"></script>
+    <script src="js/framework/CompositeView.js"></script>
+    <script src="js/models/TicTacToeBoard.js"></script>
+    <script src="js/controllers/TicTacToeBoardController.js"></script>
+    <script src="js/views/TicTacToeBoardView.js"></script>
+    <script src="js/views/TicTacToePlayerView.js"></script>
+    <script defer="defer">
+      var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 640,
+        height: 480
+      });
+
+      var layer = new Kinetic.Layer();
+      stage.add(layer);
+
+      new TicTacToeBoardController(layer).render();
+    </script>
+  </body>
+</html>
+      
