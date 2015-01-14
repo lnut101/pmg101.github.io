@@ -6,7 +6,7 @@ describe('TicTacToeBoardController', function() {
 		this.controller = new TicTacToeBoardController(null);
 	});
 
-    it('detects game over when board full', function() {
+    it('detects game over when board is full', function() {
     	var self = this;
     	expect(this.controller.isGameOver()).toBeFalsy();
     	[0,1,2,3,4,5,6,7,8].forEach(function (position) {

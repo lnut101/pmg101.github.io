@@ -35,14 +35,14 @@ describe('TicTacToeBoardView', function() {
     	expect(this.groupsCreated).toEqual(9);
     });
 
-    it('clicking tile plays move', function() {
+    it('plays move when tile is clicked', function() {
     	this.view.render();
     	expect(this.callbacks.length).toBe(9);
     	this.callbacks[0]();
     	expect(this.movesPlayed).toEqual([ 0 ]);
     });
 
-    it('when board is modified, tile shows move', function() {
+    it('shows move when board is modified', function() {
     	this.view.render();
     	this.board.squares[4].set(Player.CROSSES);
     	expect(this.textShown).toEqual('x');
