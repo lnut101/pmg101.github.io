@@ -1,15 +1,32 @@
 describe('TicTacToePlayerView', function() {
 	beforeEach(function() {
-		this.board = new TicTacToeBoard(); 
+		var self = this;
+		
+		// Mocks:
+		var node = {
+			getLayer: function() { return { draw: function() {} }; },
+			add: function() { }
+		};
+		this.currentPlayer = new Observable(Player.NOUGHTS);
+
+		// Stubs:
+		this.textShown = null;
+
+		Kinetic.Text = function(args) { self.textShown = args.text; };
+		Kinetic.Text.prototype.text = function(text) { self.textShown = text; };
+
+		this.view = new TicTacToePlayerView(node, this.currentPlayer); 
 	});
 
-    it('', function() {
+    it('initially shows noughts turn', function() {
+    	this.view.render();
+    	expect(this.textShown).toEqual('o');
     });
 
-/*    it('finds a complete diagonal row', function() {
-    	expect(this.board.hasRowFor(NoughtsAndCrossesBoard.NOUGHTS)).toBeFalsy();
-    	playMoves(this.board, [0,4,8], NoughtsAndCrossesBoard.NOUGHTS);
-    	expect(this.board.hasRowFor(NoughtsAndCrossesBoard.NOUGHTS)).toBeTruthy();
+    it('when current player switches shows crosses turn', function() {
+    	this.view.render();
+    	this.currentPlayer.set(Player.CROSSES);
+    	expect(this.textShown).toEqual('x');
     });
-*/
+
 });

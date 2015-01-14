@@ -10,7 +10,7 @@ var TicTacToeBoardView = (function() {
   }
 
   function _asMove(player) {
-    return player==1 ? 'o' : player==2 ? 'x' : '';
+    return player===Player.NOUGHTS ? 'o' : player===Player.CROSSES ? 'x' : '';
   }
 
   TicTacToeBoardView.prototype._drawTile = function(position,text,onClick) {

@@ -17,21 +17,21 @@ describe('TicTacToeBoardView', function() {
 
 		// Stubs:
 		this.callbacks = [];
-		this.newObjects = [];
+		this.groupsCreated = 0;
 
-		Kinetic.Text = function() { self.newObjects.push('T'); };
-		Kinetic.Group = function() { self.newObjects.push('G'); };
+		Kinetic.Text = function() { };
+		Kinetic.Group = function() { self.groupsCreated++; };
 		Kinetic.Group.prototype.on = function(event, callback) { self.callbacks.push(callback); };
-		Kinetic.Group.prototype.add = function(o) { self.newObjects.push('added'); };
-		Kinetic.Rect = function() { self.newObjects.push('R'); };
-		Kinetic.Line = function() { self.newObjects.push('L'); };
+		Kinetic.Group.prototype.add = function(o) { };
+		Kinetic.Rect = function() { };
+		Kinetic.Line = function() { };
 
 		this.view = new TicTacToeBoardView(node, controller, board); 
 	});
 
-    it('renders board', function() {
+    it('renders board of nine tiles', function() {
     	this.view.render();
-    	expect(this.newObjects).toEqual([ 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added', 'G', 'R', 'added', 'T', 'added' ]);
+    	expect(this.groupsCreated).toEqual(9);
     });
 
     it('clicking tile plays move', function() {

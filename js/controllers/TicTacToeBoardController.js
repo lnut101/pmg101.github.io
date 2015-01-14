@@ -1,7 +1,7 @@
 function TicTacToeBoardController(node) {
   this.node = node;
   this.board = new TicTacToeBoard();
-  this.currentPlayer = new Observable(1);
+  this.currentPlayer = new Observable(Player.NOUGHTS);
   this.view = new CompositeView([
     new TicTacToeBoardView(node, this, this.board),
     new TicTacToePlayerView(node, this.currentPlayer)
@@ -13,7 +13,7 @@ TicTacToeBoardController.prototype.render = function() {
 }
 
 TicTacToeBoardController.prototype._swapCurrentPlayer = function() {
-  this.currentPlayer.set( 3 - this.currentPlayer.get() );
+  this.currentPlayer.set( this.currentPlayer.get()===Player.NOUGHTS ? Player.CROSSES : Player.NOUGHTS );
 }
 
 TicTacToeBoardController.prototype.isGameOver = function() {
